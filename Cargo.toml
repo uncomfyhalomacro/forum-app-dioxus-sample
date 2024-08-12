@@ -11,14 +11,29 @@ resolver = "2"
 # Will move over to separate backend and frontend in the future
 age = { version = "0.10.0", features = ["async"], optional = true }
 dioxus = { version = "0.6.0-alpha.2", features = ["fullstack", "router"] }
+dioxus-fullstack = { version = "0.6.0-alpha.2", features = [
+        "axum",
+        "desktop",
+        "server",
+        "web",
+], optional = true }
 # Debug
 dioxus-logger = "0.5.1"
-sqlx = { version = "0.8", features = [ "runtime-tokio" ], optional = true }
+sqlx = { version = "0.8", features = [
+        "runtime-tokio",
+        "sqlite",
+        "macros",
+        "_unstable-all-types",
+        "migrate",
+], optional = true }
 tokio = { version = "1.39.2", features = ["full"], optional = true }
 jsonwebtoken = "9"
 serde = { version = "1.0", features = ["derive"] }
+async-trait = { version = "0.1.81", optional = true }
 
 [features]
 default = []
-server = ["dioxus/axum", "tokio", "sqlx", "age"]
+server = ["dioxus-fullstack/axum", "tokio", "sqlx", "age", "async-trait"]
 web = ["dioxus/web"]
+async-trait = ["dep:async-trait"]
+dioxus-fullstack = ["dep:dioxus-fullstack"]
