@@ -9,11 +9,16 @@ resolver = "2"
 
 [dependencies]
 # Will move over to separate backend and frontend in the future
-age = { version = "0.10.0", features = ["async"] }
+age = { version = "0.10.0", features = ["async"], optional = true }
 dioxus = { version = "0.6.0-alpha.2", features = ["fullstack", "router"] }
 # Debug
 dioxus-logger = "0.5.1"
-sqlx = "0.8.0"
-tokio = { version = "1.39.2", features = ["full"] }
+sqlx = { version = "0.8", features = [ "runtime-tokio" ], optional = true }
+tokio = { version = "1.39.2", features = ["full"], optional = true }
 jsonwebtoken = "9"
 serde = { version = "1.0", features = ["derive"] }
+
+[features]
+default = []
+server = ["dioxus/axum", "tokio", "sqlx", "age"]
+web = ["dioxus/web"]
