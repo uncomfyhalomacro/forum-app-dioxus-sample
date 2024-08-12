@@ -35,6 +35,7 @@ pub fn RegistrationPage() -> Element {
 #[component]
 pub fn Home() -> Element {
     rsx! {
+        head::Link { rel: "stylesheet", href: asset!("./assets/main.css") }
         div {
         Link {
             to: Route::RegistrationPage {},

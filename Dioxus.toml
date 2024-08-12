@@ -29,10 +29,6 @@ watch_path = ["src", "assets"]
 # include `assets` in web platform
 [web.resource]
 
-# CSS style file
-
-style = ["./assets/main.css"]
-
 # Javascript code file
 script = []
 
